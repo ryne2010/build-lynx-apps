@@ -1,0 +1,3 @@
+interface:
+  display_name: "Lynx UI Guidance"
+  short_description: "Use @dumbooks/lynx-ui safely with registry-first, proof-gated guidance"

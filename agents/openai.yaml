@@ -1,0 +1,6 @@
+interface:
+  display_name: "Build Lynx Apps"
+  short_description: "Build Lynx.js apps with official tooling and Lynx-native UI guidance"
+  icon_small: "./assets/build-lynx-apps-small.svg"
+  icon_large: "./assets/app-icon.png"
+  default_prompt: "Build a high-quality Lynx.js app surface with a polished, verified user experience."

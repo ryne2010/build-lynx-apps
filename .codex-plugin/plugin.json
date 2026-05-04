@@ -1,0 +1,41 @@
+{
+  "name": "build-lynx-apps",
+  "version": "0.1.0",
+  "description": "Build Lynx.js apps with official Lynx tooling, Lynx-native UI guidance, visual concept workflows, and optional app-service integrations.",
+  "author": {
+    "name": "Ryne Schroder",
+    "url": "https://github.com/ryne2010"
+  },
+  "homepage": "https://lynxjs.org/",
+  "repository": "https://github.com/ryne2010/harness-engineering-audit",
+  "license": "MIT",
+  "keywords": [
+    "build-lynx-apps",
+    "lynx",
+    "reactlynx",
+    "lynx-ui",
+    "docs-mcp",
+    "devtool-mcp",
+    "image-generation",
+    "visual-qa",
+    "stripe",
+    "supabase"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Build Lynx Apps",
+    "shortDescription": "Build Lynx.js apps with official tooling, Lynx-native UI, and visual QA guidance",
+    "longDescription": "Use Build Lynx Apps to create Lynx.js application surfaces from image-generated concepts, route framework questions through official Lynx Docs and DevTool MCPs, compose UI with read-only @dumbooks/lynx-ui guidance, and optionally plan Stripe or Supabase/Postgres app-service integrations without UI-framework assumptions.",
+    "developerName": "Ryne Schroder",
+    "category": "Coding",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "websiteURL": "https://lynxjs.org/",
+    "privacyPolicyURL": "https://openai.com/policies/privacy-policy/",
+    "termsOfServiceURL": "https://openai.com/policies/terms-of-use/",
+    "defaultPrompt": ["Build a polished Lynx.js app screen with a verified visual workflow."],
+    "brandColor": "#0F766E",
+    "composerIcon": "./assets/build-lynx-apps-small.svg",
+    "logo": "./assets/app-icon.png",
+    "screenshots": []
+  }
+}

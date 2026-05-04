@@ -1,0 +1,4 @@
+interface:
+  display_name: "Lynx App Builder"
+  short_description: "Build Lynx.js app surfaces from concepts with evidence-based verification"
+  default_prompt: "Design and build a polished Lynx.js app screen."
