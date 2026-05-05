@@ -1,6 +1,7 @@
 ---
 name: lynx-ui-guidance
 description: Use read-only @dumbooks/lynx-ui guidance for Lynx-native UI composition, component selection, registry checks, package-import-first usage, proof gates, official-substrate metadata, guarded CLI boundaries, local-workspace framing, and migration planning. Applies when a Lynx app needs components, tokens, forms, overlays, patterns, themes, visual styles, base colors, or a replacement for DOM-oriented UI-kit assumptions.
+license: MIT
 ---
 
 # Lynx UI Guidance

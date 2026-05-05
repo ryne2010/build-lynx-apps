@@ -1,0 +1,20 @@
+{
+  "name": "build-lynx-apps",
+  "interface": {
+    "displayName": "Build Lynx Apps"
+  },
+  "plugins": [
+    {
+      "name": "build-lynx-apps",
+      "source": {
+        "source": "local",
+        "path": "."
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "NONE"
+      },
+      "category": "Coding"
+    }
+  ]
+}

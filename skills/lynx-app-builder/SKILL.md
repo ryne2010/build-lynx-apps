@@ -1,6 +1,7 @@
 ---
 name: lynx-app-builder
 description: Use for Lynx.js app surfaces, ReactLynx screens, pages, dashboards, product surfaces, mobile flows, and visually driven Lynx UI from scratch or redesign. Builds from high-quality image-generated concepts, routes framework truth through official Lynx tooling, applies ReactLynx guardrails, composes UI with local-workspace Lynx UI guidance, and verifies with Lynx DevTool screenshots, $visual-ralph/$visual-verdict evidence, or explicit static/build evidence.
+license: MIT
 ---
 
 # Lynx App Builder

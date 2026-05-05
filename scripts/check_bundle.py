@@ -21,7 +21,7 @@ EXPECTED_SKILLS = {
     "debug-info-remapping": "debug-info-remapping",
     "lynx-ui-guidance": "lynx-ui-guidance",
     "stripe-best-practices": "stripe-best-practices",
-    "supabase-best-practices": "supabase-postgres-best-practices",
+    "supabase-postgres-best-practices": "supabase-postgres-best-practices",
 }
 REMOVED_DIRS = {"react-best-practices", "shadcn-best-practices", "frontend-app-builder"}
 ACTIVE_SUFFIXES = {".md", ".json", ".yaml", ".yml"}
@@ -215,7 +215,7 @@ SERVICE_REQUIRED_STRINGS = {
         "target host surface",
         "Lynx bundle",
     ],
-    "skills/supabase-best-practices/SKILL.md": [
+    "skills/supabase-postgres-best-practices/SKILL.md": [
         "service-role",
         "Row-Level Security",
         "anon key",

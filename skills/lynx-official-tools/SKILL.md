@@ -1,6 +1,7 @@
 ---
 name: lynx-official-tools
 description: Route Lynx.js framework, debugging, preview, trace, TypeScript, integration, desktop, SVG, routing, testing, bundle, Habitat, state-management, reactlynx-use, and tooling questions through official Lynx Docs MCP, Lynx DevTool MCP, llms.txt, AGENTS guidance, and community skills. Use for Lynx architecture, ReactLynx APIs, build/debug behavior, device preview, trace/debug workflows, ecosystem packages, or when current Lynx documentation is needed.
+license: MIT
 ---
 
 # Lynx Official Tools

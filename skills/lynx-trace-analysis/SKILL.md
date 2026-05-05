@@ -1,6 +1,7 @@
 ---
 name: lynx-trace-analysis
 description: First-class Lynx trace analysis guidance for startup, white screen, FCP/FMP/TTI, scroll jank, frame drops, interaction latency, render pipeline, ReactLynx render churn, and native-module bottlenecks. Use when reading an existing Lynx trace or performance artifact.
+license: MIT
 ---
 
 # Lynx Trace Analysis

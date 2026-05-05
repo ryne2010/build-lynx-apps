@@ -14,7 +14,83 @@ Builder workflows for Lynx.js app surfaces, pages, projects, and bundles, offici
 - `debug-info-remapping` — first-class debug-info remapping guidance for minified, bundled, source-map, or main-thread runtime errors.
 - `lynx-ui-guidance` — read-only local-workspace `@dumbooks/lynx-ui` usage guidance, package-import-first component selection, proof gates, official-substrate metadata, local/internal-beta caveats, and guarded CLI boundaries.
 - `stripe-best-practices` — optional service-domain guidance for payment flows used by Lynx app surfaces.
-- `supabase-best-practices` — optional service-domain guidance for Postgres/Supabase data layers used by Lynx app surfaces. The installed skill frontmatter name is `supabase-postgres-best-practices`.
+- `supabase-postgres-best-practices` — optional service-domain guidance for Postgres/Supabase data layers used by Lynx app surfaces.
+
+
+## Install and distribution
+
+This repository supports the current `gh skill` path for installing individual Agent Skills. It also includes Codex plugin marketplace metadata so the repository can be added as a Codex plugin marketplace source.
+
+No release has been published by this repository setup step. As the sole maintainer, validate locally first, then publish a tagged release only when you are ready.
+
+### Install individual skills with GitHub CLI
+
+Install a specific skill for Codex at user scope:
+
+```bash
+gh skill install ryne2010/build-lynx-apps lynx-app-builder --agent codex --scope user
+```
+
+Preview skills before installing:
+
+```bash
+gh skill preview ryne2010/build-lynx-apps
+gh skill preview ryne2010/build-lynx-apps reactlynx-best-practices
+```
+
+Search for published/discoverable skills from this owner:
+
+```bash
+gh skill search lynx --owner ryne2010
+```
+
+Install other bundled skills by name, for example:
+
+```bash
+gh skill install ryne2010/build-lynx-apps reactlynx-best-practices --agent codex --scope user
+gh skill install ryne2010/build-lynx-apps lynx-official-tools --agent codex --scope user
+gh skill install ryne2010/build-lynx-apps lynx-devtool --agent codex --scope user
+gh skill install ryne2010/build-lynx-apps supabase-postgres-best-practices --agent codex --scope user
+```
+
+Update installed skills later:
+
+```bash
+gh skill update --all
+```
+
+### Maintainer validation and future publishing
+
+Validate without uploading or creating a release:
+
+```bash
+python3 scripts/check_bundle.py
+gh skill publish --dry-run .
+```
+
+When ready to publish, create a tagged GitHub release through `gh skill publish`:
+
+```bash
+gh skill publish --tag v0.1.0
+```
+
+Do not run the non-dry-run publish command until the intended tag, README, skill metadata, and repository contents are final. As the sole maintainer, also consider adding a GitHub tag-protection ruleset before the first public release so published versions remain immutable.
+
+### Codex plugin marketplace setup
+
+This repo includes `.agents/plugins/marketplace.json` plus `.codex-plugin/plugin.json`, so Codex can treat the repository as a plugin marketplace source. Add the marketplace from a local checkout or GitHub repository source:
+
+```bash
+codex plugin marketplace add ryne2010/build-lynx-apps
+```
+
+For local testing from this checkout, use the local path instead:
+
+```bash
+codex plugin marketplace add /path/to/build-lynx-apps
+```
+
+After adding the marketplace, install or enable the `build-lynx-apps` plugin from Codex's plugin UI when available in your Codex surface.
 
 ## Purpose
 

@@ -1,6 +1,7 @@
 ---
 name: stripe-best-practices
 description: Optional service-domain guidance for Stripe integrations used by Lynx.js apps. Guides API selection, Checkout Sessions, PaymentIntents, Connect, subscriptions, and migrations while keeping payment surfaces separate from Lynx UI implementation guidance.
+license: MIT
 ---
 
 Before implementing Stripe code, check official Stripe documentation for the current API version and SDK. Do not rely on copied version notes unless verified for the target project.

@@ -1,6 +1,7 @@
 ---
 name: reactlynx-best-practices
 description: First-class ReactLynx guardrails for Lynx dual-thread architecture, native API calls, event handlers, main-thread scripts, cross-thread calls, shared modules, static JSX, TypeScript setup, testing, routing, data fetching, state management, reactlynx-use, code splitting, and safe React patterns. Use when writing, reviewing, or debugging ReactLynx components, events, native modules, animations, gestures, refs, routing, tests, state stores, hooks, or TypeScript declarations.
+license: MIT
 ---
 
 # ReactLynx Best Practices

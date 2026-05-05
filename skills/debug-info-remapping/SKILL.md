@@ -1,6 +1,7 @@
 ---
 name: debug-info-remapping
 description: First-class Lynx debug-info remapping guidance for minified, bundled, or main-thread runtime errors. Use when console stacks, bytecode positions, source maps, generated sources, or loaded DevTool sources must be mapped back to original ReactLynx source.
+license: MIT
 ---
 
 # Debug Info Remapping

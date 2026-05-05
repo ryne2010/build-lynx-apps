@@ -1,6 +1,7 @@
 ---
 name: supabase-postgres-best-practices
 description: Optional service-domain guidance for Postgres and Supabase data layers used by Lynx.js apps. Use when writing, reviewing, or optimizing queries, schema designs, indexes, RLS policies, connection behavior, or database configuration; do not use as UI implementation guidance.
+license: MIT
 metadata:
   author: supabase
   version: "1.1.0"

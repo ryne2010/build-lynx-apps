@@ -1,6 +1,7 @@
 ---
 name: lynx-typescript
 description: First-class TypeScript guardrails for Lynx and ReactLynx projects. Use when configuring, reviewing, or fixing TypeScript for Rspeedy, JSX, CSS Modules, native modules, InitData, GlobalProps, custom elements, main-thread events/refs, or package-import boundaries.
+license: MIT
 ---
 
 # Lynx TypeScript

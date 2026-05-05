@@ -1,6 +1,7 @@
 ---
 name: lynx-trace-record
 description: First-class Lynx trace capture guidance for startup, scroll, interaction, render, JS profiling, and native-module latency investigations. Use when a task needs to capture a Lynx performance trace artifact before analysis.
+license: MIT
 ---
 
 # Lynx Trace Record

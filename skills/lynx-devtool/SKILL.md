@@ -1,6 +1,7 @@
 ---
 name: lynx-devtool
 description: First-class Lynx DevTool MCP workflow guidance for connected-device/app inspection, CDP commands, App commands, Open URLs, troubleshooting, console/source debugging, interaction, screenshots, visual QA, and runtime verification. Use when debugging, previewing, opening pages/URLs, taking screenshots, checking console/source state, interacting with a Lynx page, diagnosing connector issues, or proving visual/runtime behavior.
+license: MIT
 ---
 
 # Lynx DevTool
