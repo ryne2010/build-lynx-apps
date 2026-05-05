@@ -1,0 +1,189 @@
+name: Publish Agent Skills
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .agents/plugins/marketplace.json
+      - .codex-plugin/plugin.json
+      - .github/workflows/publish-skills.yml
+      - agents/**
+      - assets/**
+      - docs/COOKBOOK.md
+      - docs/EVALS.md
+      - LICENSE
+      - README.md
+      - scripts/check_bundle.py
+      - scripts/check_evals.py
+      - skills/**
+
+permissions:
+  contents: read
+
+concurrency:
+  group: publish-agent-skills-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  REQUIRED_GH_VERSION: 2.90.0
+  PINNED_GH_VERSION: 2.92.0
+  GH_AMD64_DEB_SHA256: 8f8212b1a9cec261a8839e0893168f50d3fc70f095da257feef4229234cefdf8
+  GH_ARM64_DEB_SHA256: 34d620b7c884774ed86236541535170889fda0b99aafbdab8b69c7d458b5ca6b
+
+jobs:
+  validate:
+    name: Validate skills bundle
+    runs-on: ubuntu-latest
+    if: github.repository == 'ryne2010/build-lynx-apps'
+    permissions:
+      contents: read
+    outputs:
+      tag: ${{ steps.version.outputs.tag }}
+      version: ${{ steps.version.outputs.version }}
+      tag-exists: ${{ steps.existing-tag.outputs.exists }}
+    steps:
+      - name: Check out repository
+        # actions/checkout v4.2.2 pinned by full commit SHA.
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Ensure GitHub CLI supports gh skill
+        shell: bash
+        run: |
+          set -euo pipefail
+          current="$(gh --version | awk 'NR==1 {print $3}')"
+          oldest="$(printf '%s\n%s\n' "$REQUIRED_GH_VERSION" "$current" | sort -V | head -n1)"
+          if [[ "$oldest" != "$REQUIRED_GH_VERSION" ]]; then
+            echo "GitHub CLI $current is too old; installing pinned GitHub CLI $PINNED_GH_VERSION"
+            arch="$(dpkg --print-architecture)"
+            case "$arch" in
+              amd64) expected_sha="$GH_AMD64_DEB_SHA256" ;;
+              arm64) expected_sha="$GH_ARM64_DEB_SHA256" ;;
+              *) echo "Unsupported GitHub CLI package architecture: $arch" >&2; exit 1 ;;
+            esac
+            deb="gh_${PINNED_GH_VERSION}_linux_${arch}.deb"
+            curl -fsSLo "/tmp/$deb" "https://github.com/cli/cli/releases/download/v${PINNED_GH_VERSION}/$deb"
+            echo "$expected_sha  /tmp/$deb" | sha256sum --check --strict
+            sudo apt-get update
+            sudo apt-get install -y "/tmp/$deb"
+            current="$(gh --version | awk 'NR==1 {print $3}')"
+          fi
+          oldest="$(printf '%s\n%s\n' "$REQUIRED_GH_VERSION" "$current" | sort -V | head -n1)"
+          if [[ "$oldest" != "$REQUIRED_GH_VERSION" ]]; then
+            echo "GitHub CLI $current is too old; gh skill requires >= $REQUIRED_GH_VERSION" >&2
+            exit 1
+          fi
+          echo "GitHub CLI $current satisfies >= $REQUIRED_GH_VERSION"
+          gh skill publish --help >/dev/null
+
+      - name: Derive release tag from plugin version
+        id: version
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(python3 - <<'PY'
+          import json
+          from pathlib import Path
+
+          plugin = json.loads(Path('.codex-plugin/plugin.json').read_text(encoding='utf-8'))
+          print(plugin['version'])
+          PY
+          )"
+          if [[ ! "$VERSION" =~ ^(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$ ]]; then
+            echo "Invalid semantic version in .codex-plugin/plugin.json: $VERSION" >&2
+            exit 1
+          fi
+          TAG="v${VERSION}"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "Publishing tag candidate: $TAG"
+
+      - name: Validate bundle contract
+        run: python3 scripts/check_bundle.py
+
+      - name: Validate dry-run eval fixtures
+        run: python3 scripts/check_evals.py
+
+      - name: Validate gh skill publish dry run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh skill publish --dry-run .
+
+      - name: Check whether release tag already exists
+        id: existing-tag
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --tags --force
+          if git rev-parse -q --verify "refs/tags/${{ steps.version.outputs.tag }}" >/dev/null; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "Tag ${{ steps.version.outputs.tag }} already exists; skipping publish. Bump .codex-plugin/plugin.json to publish a new release."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+  publish:
+    name: Publish skills release
+    needs: validate
+    if: needs.validate.outputs.tag-exists == 'false'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Check out repository
+        # actions/checkout v4.2.2 pinned by full commit SHA.
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Ensure GitHub CLI supports gh skill
+        shell: bash
+        run: |
+          set -euo pipefail
+          current="$(gh --version | awk 'NR==1 {print $3}')"
+          oldest="$(printf '%s\n%s\n' "$REQUIRED_GH_VERSION" "$current" | sort -V | head -n1)"
+          if [[ "$oldest" != "$REQUIRED_GH_VERSION" ]]; then
+            echo "GitHub CLI $current is too old; installing pinned GitHub CLI $PINNED_GH_VERSION"
+            arch="$(dpkg --print-architecture)"
+            case "$arch" in
+              amd64) expected_sha="$GH_AMD64_DEB_SHA256" ;;
+              arm64) expected_sha="$GH_ARM64_DEB_SHA256" ;;
+              *) echo "Unsupported GitHub CLI package architecture: $arch" >&2; exit 1 ;;
+            esac
+            deb="gh_${PINNED_GH_VERSION}_linux_${arch}.deb"
+            curl -fsSLo "/tmp/$deb" "https://github.com/cli/cli/releases/download/v${PINNED_GH_VERSION}/$deb"
+            echo "$expected_sha  /tmp/$deb" | sha256sum --check --strict
+            sudo apt-get update
+            sudo apt-get install -y "/tmp/$deb"
+            current="$(gh --version | awk 'NR==1 {print $3}')"
+          fi
+          oldest="$(printf '%s\n%s\n' "$REQUIRED_GH_VERSION" "$current" | sort -V | head -n1)"
+          if [[ "$oldest" != "$REQUIRED_GH_VERSION" ]]; then
+            echo "GitHub CLI $current is too old; gh skill requires >= $REQUIRED_GH_VERSION" >&2
+            exit 1
+          fi
+          echo "GitHub CLI $current satisfies >= $REQUIRED_GH_VERSION"
+          gh skill publish --help >/dev/null
+
+      - name: Re-check whether release tag exists
+        id: publish-tag-check
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --tags --force
+          if git rev-parse -q --verify "refs/tags/${{ needs.validate.outputs.tag }}" >/dev/null; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+            echo "Tag ${{ needs.validate.outputs.tag }} was created after validation; skipping publish."
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish skills release
+        if: steps.publish-tag-check.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh skill publish --tag "${{ needs.validate.outputs.tag }}" .

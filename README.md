@@ -21,7 +21,14 @@ Builder workflows for Lynx.js app surfaces, pages, projects, and bundles, offici
 
 This repository supports the current `gh skill` path for installing individual Agent Skills. It also includes Codex plugin marketplace metadata so the repository can be added as a Codex plugin marketplace source.
 
-No release has been published by this repository setup step. As the sole maintainer, validate locally first, then publish a tagged release only when you are ready.
+Public readiness status:
+
+- GitHub repository: public at `https://github.com/ryne2010/build-lynx-apps`.
+- Current plugin version: `0.1.0` in `.codex-plugin/plugin.json`.
+- First release tag to publish: `v0.1.0`.
+- Release state: no GitHub release has been published by this setup step.
+
+As the sole maintainer, validate locally first, then publish a tagged release only when you are ready.
 
 ### Install individual skills with GitHub CLI
 
@@ -65,10 +72,32 @@ Validate without uploading or creating a release:
 
 ```bash
 python3 scripts/check_bundle.py
+python3 scripts/check_evals.py
 gh skill publish --dry-run .
 ```
 
-When ready to publish, create a tagged GitHub release through `gh skill publish`:
+Versioning uses SemVer in `.codex-plugin/plugin.json` and immutable Git tags named `vMAJOR.MINOR.PATCH`.
+
+Automatic publishing:
+
+- Pushes to `main` run `.github/workflows/publish-skills.yml` only when release-relevant files change: plugin metadata, marketplace metadata, root agent metadata, assets, skill files, release docs/evals, validators, license, or the workflow itself.
+- The workflow derives the release tag from `.codex-plugin/plugin.json` as `v<version>`.
+- The workflow validates the bundle, eval fixtures, and `gh skill publish --dry-run .` before publishing.
+- If the derived tag already exists, the workflow skips publishing and reports that `.codex-plugin/plugin.json` must be bumped for a new release.
+- Validation runs with `contents: read`; the final publish job alone gets `contents: write` so `gh skill publish --tag ... .` can create the GitHub release/tag.
+- The workflow pins `actions/checkout` to a full commit SHA (`v4.2.2`) instead of a mutable tag.
+- The workflow asserts GitHub CLI support for `gh skill` (`gh >= 2.90.0`) and, if the runner is too old, installs pinned GitHub CLI `2.92.0` after verifying the downloaded `.deb` SHA-256.
+- Repository releases are immutable, and the `versioning` ruleset protects `v*` tags by restricting deletions and blocking force pushes.
+
+Release checklist:
+
+1. Update `.codex-plugin/plugin.json` `"version"` to the intended SemVer value.
+2. Update this README so the current plugin version and first/next release tag match that value.
+3. Run the local validators and `gh skill publish --dry-run .`.
+4. Commit the release-ready bundle.
+5. Publish with the matching `v<version>` tag.
+
+When ready to publish `0.1.0`, create the tagged GitHub release through `gh skill publish`:
 
 ```bash
 gh skill publish --tag v0.1.0

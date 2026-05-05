@@ -48,8 +48,10 @@ STALE_PATTERNS = {
     "shadcn-best-practices": re.compile(r"shadcn-best-practices"),
 }
 REQUIRED_PATHS = [
+    ".github/workflows/publish-skills.yml",
     ".codex-plugin/plugin.json",
     "agents/openai.yaml",
+    "LICENSE",
     "README.md",
     "docs/COOKBOOK.md",
     "docs/EVALS.md",
@@ -223,6 +225,40 @@ SERVICE_REQUIRED_STRINGS = {
         "host-dependent",
     ],
 }
+WORKFLOW_REQUIRED_STRINGS = [
+    "on:",
+    "push:",
+    "branches:",
+    "- main",
+    "paths:",
+    ".codex-plugin/plugin.json",
+    ".agents/plugins/marketplace.json",
+    "skills/**",
+    "validate:",
+    "publish:",
+    "permissions:",
+    "contents: read",
+    "contents: write",
+    "persist-credentials: false",
+    "REQUIRED_GH_VERSION: 2.90.0",
+    "PINNED_GH_VERSION: 2.92.0",
+    "actions/checkout v4.2.2 pinned by full commit SHA",
+    "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+    "GH_AMD64_DEB_SHA256: 8f8212b1a9cec261a8839e0893168f50d3fc70f095da257feef4229234cefdf8",
+    "GH_ARM64_DEB_SHA256: 34d620b7c884774ed86236541535170889fda0b99aafbdab8b69c7d458b5ca6b",
+    "installing pinned GitHub CLI $PINNED_GH_VERSION",
+    "sha256sum --check --strict",
+    "gh skill requires >=",
+    "python3 scripts/check_bundle.py",
+    "python3 scripts/check_evals.py",
+    "gh skill publish --dry-run .",
+    "refs/tags/${{ steps.version.outputs.tag }}",
+    "refs/tags/${{ needs.validate.outputs.tag }}",
+    "gh skill publish --tag",
+]
+SEMVER_RE = re.compile(r"^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$")
+MARKETPLACE_INSTALLATION_VALUES = {"NOT_AVAILABLE", "AVAILABLE", "INSTALLED_BY_DEFAULT"}
+MARKETPLACE_AUTHENTICATION_VALUES = {"ON_INSTALL", "ON_USE"}
 
 
 def frontmatter_name(path: Path) -> str:
@@ -294,6 +330,9 @@ def validate() -> list[str]:
         plugin = {}
     if plugin.get("name") != "build-lynx-apps":
         errors.append("plugin name must be build-lynx-apps")
+    version = plugin.get("version")
+    if not isinstance(version, str) or not SEMVER_RE.match(version):
+        errors.append("plugin version must be a semantic version string")
     if plugin.get("skills") != "./skills/":
         errors.append('plugin skills path must be "./skills/"')
     if plugin.get("repository") != EXPECTED_REPOSITORY:
@@ -303,6 +342,36 @@ def validate() -> list[str]:
     website = plugin.get("interface", {}).get("websiteURL")
     if website != EXPECTED_REPOSITORY:
         errors.append(f"plugin interface.websiteURL must be {EXPECTED_REPOSITORY}")
+    default_prompts = plugin.get("interface", {}).get("defaultPrompt")
+    if not isinstance(default_prompts, list) or not 1 <= len(default_prompts) <= 3:
+        errors.append("plugin interface.defaultPrompt must contain 1 to 3 prompts")
+    else:
+        for prompt in default_prompts:
+            if not isinstance(prompt, str) or len(prompt) > 128:
+                errors.append("plugin interface.defaultPrompt entries must be strings no longer than 128 characters")
+
+    readme_text = (ROOT / "README.md").read_text(encoding="utf-8") if (ROOT / "README.md").exists() else ""
+    if version and f"v{version}" not in readme_text:
+        errors.append(f"README must document the current release tag v{version}")
+    if version and f'"version": "{version}"' not in (ROOT / ".codex-plugin" / "plugin.json").read_text(encoding="utf-8"):
+        errors.append("plugin.json version must remain explicit and reviewable")
+
+    try:
+        marketplace = json.loads((ROOT / ".agents" / "plugins" / "marketplace.json").read_text(encoding="utf-8"))
+    except Exception as exc:  # noqa: BLE001 - report validation context
+        errors.append(f"could not read marketplace.json: {exc}")
+        marketplace = {}
+    entries = [entry for entry in marketplace.get("plugins", []) if entry.get("name") == "build-lynx-apps"]
+    if len(entries) != 1:
+        errors.append("marketplace must contain exactly one build-lynx-apps entry")
+    for entry in entries:
+        policy = entry.get("policy", {})
+        if policy.get("installation") not in MARKETPLACE_INSTALLATION_VALUES:
+            errors.append("marketplace policy.installation must use an allowed value")
+        if policy.get("authentication") not in MARKETPLACE_AUTHENTICATION_VALUES:
+            errors.append("marketplace policy.authentication must use an allowed value")
+        if entry.get("category") != "Coding":
+            errors.append("marketplace category must be Coding")
 
     skills_dir = ROOT / "skills"
     actual_dirs = {p.name for p in skills_dir.iterdir() if p.is_dir()}
@@ -343,6 +412,14 @@ def validate() -> list[str]:
     require_strings(errors, "skills/lynx-ui-guidance/SKILL.md", LYNX_UI_REQUIRED_FIELDS)
     for rel, strings in SERVICE_REQUIRED_STRINGS.items():
         require_strings(errors, rel, strings)
+    require_strings(errors, ".github/workflows/publish-skills.yml", WORKFLOW_REQUIRED_STRINGS)
+    workflow = ROOT / ".github" / "workflows" / "publish-skills.yml"
+    if workflow.exists():
+        workflow_text = workflow.read_text(encoding="utf-8")
+        if "actions/checkout@v4" in workflow_text:
+            errors.append("publish workflow must pin actions/checkout to a full commit SHA, not @v4")
+        if "releases/latest" in workflow_text:
+            errors.append("publish workflow must not install a dynamic latest GitHub CLI release")
 
     evals = ROOT / "docs" / "EVALS.md"
     if evals.exists():

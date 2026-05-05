@@ -50,7 +50,7 @@
     "privacyPolicyURL": "https://openai.com/policies/privacy-policy/",
     "termsOfServiceURL": "https://openai.com/policies/terms-of-use/",
     "defaultPrompt": [
-      "Build a polished Lynx.js app surface with official-doc routing, first-class Lynx skill guardrails, and a verified visual/runtime workflow."
+      "Build a polished Lynx.js app surface with official-doc routing, Lynx guardrails, and visual/runtime checks."
     ],
     "brandColor": "#0F766E",
     "composerIcon": "./assets/build-lynx-apps-small.svg",
