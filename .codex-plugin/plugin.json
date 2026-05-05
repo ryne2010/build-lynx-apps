@@ -1,6 +1,6 @@
 {
   "name": "build-lynx-apps",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Build Lynx.js app surfaces and bundles with official global Lynx tooling routes, Lynx-native UI guidance, visual concept workflows, and optional app-service integration guidance.",
   "author": {
     "name": "Ryne Schroder",
