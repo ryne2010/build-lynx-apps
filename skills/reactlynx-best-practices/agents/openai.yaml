@@ -1,3 +1,0 @@
-interface:
-  display_name: "ReactLynx Best Practices"
-  short_description: "Apply official ReactLynx dual-thread, event, TypeScript, routing, and test guardrails"

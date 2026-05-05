@@ -1,21 +1,27 @@
 # Build Lynx Apps Plugin
 
-Builder workflows for Lynx.js app surfaces, pages, projects, and bundles, official Lynx AI tooling, first-class official Lynx skill companions, ReactLynx best-practice guardrails, local-workspace UI composition with `@dumbooks/lynx-ui`, measured OMX visual QA loops, and optional app-service integration guidance.
+Builder workflows for Lynx.js app surfaces, pages, projects, and bundles that route to official global Lynx tooling, use local-workspace UI composition with `@dumbooks/lynx-ui`, support measured OMX visual QA loops, and include optional app-service integration guidance.
 
 ## Skills
 
+This plugin intentionally keeps a small local skill surface. Official Lynx AI skills and MCP servers are **not vendored here**; install them globally from the official Lynx sources and let agents route to them when Lynx framework truth, DevTool runtime inspection, trace analysis, TypeScript, or ReactLynx best-practice guidance is needed.
+
 - `lynx-app-builder` — concept-first Lynx surface workflow with implementation inventories, OMX visual orchestration, and evidence-based verification.
-- `lynx-official-tools` — routes Lynx framework, debugging, trace, TypeScript, integration, routing, testing, bundle, desktop, SVG, Habitat, state-management, `reactlynx-use`, and tooling questions to official Lynx Docs MCP, DevTool MCP, `llms.txt`, AGENTS guidance, and community skills.
-- `reactlynx-best-practices` — first-class ReactLynx guardrails for dual-thread native API calls, events, main-thread scripts, cross-thread calls, shared modules, static JSX, TypeScript, testing, routing, data fetching, and bundle behavior.
-- `lynx-typescript` — first-class TypeScript guardrails for Rspeedy env declarations, JSX config, CSS Modules, native modules, custom elements, InitData, GlobalProps, main-thread event/ref types, and package type boundaries.
-- `lynx-devtool` — first-class DevTool MCP workflow guidance for connected-device inspection, CDP commands, App commands, Open URLs, troubleshooting, console/source debugging, interaction checks, screenshots, and runtime evidence ledgers.
-- `lynx-trace-record` — first-class trace-capture guidance for startup, scroll, interaction, render, JS profiling, and native-module latency investigations.
-- `lynx-trace-analysis` — first-class trace-analysis guidance for startup/white-screen metrics, smoothness, interaction latency, render pipeline, ReactLynx render churn, and native-module bottlenecks.
-- `debug-info-remapping` — first-class debug-info remapping guidance for minified, bundled, source-map, or main-thread runtime errors.
 - `lynx-ui-guidance` — read-only local-workspace `@dumbooks/lynx-ui` usage guidance, package-import-first component selection, proof gates, official-substrate metadata, local/internal-beta caveats, and guarded CLI boundaries.
 - `stripe-best-practices` — optional service-domain guidance for payment flows used by Lynx app surfaces.
 - `supabase-postgres-best-practices` — optional service-domain guidance for Postgres/Supabase data layers used by Lynx app surfaces.
 
+### Official Lynx prerequisites
+
+For current Lynx documentation, DevTool runtime inspection, and the upstream Lynx AI skill set, install the official tools globally rather than from this repository:
+
+```bash
+codex mcp add lynx-docs -- npx @lynx-js/docs-mcp-server@latest
+codex mcp add lynx-devtool -- npx @lynx-js/devtool-mcp-server@latest
+npx skills add lynx-community/skills
+```
+
+These commands are documentation only for this plugin. Do not run setup, install MCP servers, add community skills, or mutate user configuration unless the user starts a separate setup/configuration task.
 
 ## Install and distribution
 
@@ -42,7 +48,7 @@ Preview skills before installing:
 
 ```bash
 gh skill preview ryne2010/build-lynx-apps
-gh skill preview ryne2010/build-lynx-apps reactlynx-best-practices
+gh skill preview ryne2010/build-lynx-apps lynx-ui-guidance
 ```
 
 Search for published/discoverable skills from this owner:
@@ -54,9 +60,8 @@ gh skill search lynx --owner ryne2010
 Install other bundled skills by name, for example:
 
 ```bash
-gh skill install ryne2010/build-lynx-apps reactlynx-best-practices --agent codex --scope user
-gh skill install ryne2010/build-lynx-apps lynx-official-tools --agent codex --scope user
-gh skill install ryne2010/build-lynx-apps lynx-devtool --agent codex --scope user
+gh skill install ryne2010/build-lynx-apps lynx-ui-guidance --agent codex --scope user
+gh skill install ryne2010/build-lynx-apps stripe-best-practices --agent codex --scope user
 gh skill install ryne2010/build-lynx-apps supabase-postgres-best-practices --agent codex --scope user
 ```
 
@@ -127,7 +132,24 @@ Use this plugin when building, reviewing, or planning Lynx.js app surfaces, page
 
 Lynx quick-start tooling can create a Lynx project and output Lynx/Web bundles, but complete native, mobile, desktop, or web host applications require host integration. For host/container claims, agents must consult official Lynx resources such as `lynx-docs://react/start/quick-start.md` and `lynx-docs://react/start/integrate-with-existing-apps.md` instead of implying a full host app can be generated from this plugin alone.
 
-`@dumbooks/lynx-ui` is currently treated as a local workspace package at `/Users/ryneschroder/Developer/git/dumbooks/packages/lynx-ui`. It is positioned for future open source, but this plugin must not imply public registry availability, license clearance, npm publishability, or external stable support unless the package docs and proof gates say so.
+`@dumbooks/lynx-ui` is currently treated as a local workspace package at `/Users/ryneschroder/Developer/git/dumbooks/packages/lynx-ui`. It is positioned for future open source, but this plugin must not imply public registry availability, license clearance, npm publishability, or external stable support unless the package docs and proof gates say so. If the target app cannot resolve the local package, agents should provide a Lynx-native fallback using official Lynx elements and CSS Modules instead of suggesting public installation.
+
+### Lynx UI availability, exports, and examples
+
+Agents must re-check the local package manifest before making package-consumer claims. If `packages/lynx-ui/package.json` still marks the package private, unlicensed, repo-local, unpublished, or otherwise not externally consumable, guidance remains local-workspace/internal-beta only.
+
+When local package resolution is proven, use the exact export surface from the package manifest rather than invented paths:
+
+  - `@dumbooks/lynx-ui`
+  - `@dumbooks/lynx-ui/tokens`
+  - `@dumbooks/lynx-ui/tokens.css`
+  - `@dumbooks/lynx-ui/token-registry`
+  - `@dumbooks/lynx-ui/flavors`
+  - `@dumbooks/lynx-ui/registry`
+  - `@dumbooks/lynx-ui/registry-manifest`
+  - `@dumbooks/lynx-ui/experimental` — compatibility alias only, not the default recommendation
+
+Before writing component usage, read the registry entry and its registry examples when present. The quickest local examples are under `/Users/ryneschroder/Developer/git/dumbooks/packages/lynx-ui/examples/`, especially `components.tsx` for root component composition and `flavor-gallery.tsx` for visual style/base-color/token usage.
 
 ## Official Lynx tooling setup references
 
@@ -139,7 +161,7 @@ codex mcp add lynx-devtool -- npx @lynx-js/devtool-mcp-server@latest
 npx skills add lynx-community/skills
 ```
 
-When `lynx-docs` MCP is configured, agents should list resources and read `lynx-docs://llms.txt` first, then read the specific docs needed for the task. This plugin bundles local companion skills for the official Lynx AI skill family so those routes remain discoverable even before community skills are installed. When `lynx-devtool` MCP is configured and a device/app is connected, agents may use it for CDP-backed inspection, App commands, Open URL workflows, connector/transport troubleshooting, console/source diagnostics, interaction, trace/debug workflows, and screenshots; source code remains the mutation surface.
+When `lynx-docs` MCP is configured, agents should list resources and read `lynx-docs://llms.txt` first, then read the specific docs needed for the task. This plugin does not bundle local companion copies of the official Lynx AI skill family. When `lynx-devtool` MCP is configured and a device/app is connected, agents may use it for CDP-backed inspection, App commands, Open URL workflows, connector/transport troubleshooting, console/source diagnostics, interaction, trace/debug workflows, and screenshots; source code remains the mutation surface.
 
 ## OMX visual QA integration
 
@@ -162,7 +184,7 @@ See `docs/COOKBOOK.md` for common workflows:
 - integrate a Lynx bundle into an existing host,
 - build a polished Lynx screen with visual evidence,
 - run a `$visual-ralph` / `$visual-verdict` visual iteration loop,
-- compose UI with local-workspace `@dumbooks/lynx-ui`,
+- compose UI with local-workspace `@dumbooks/lynx-ui`, including exact export-surface and registry examples checks,
 - debug with Lynx DevTool MCP when available,
 - handle ReactLynx routing, TypeScript, testing, code splitting, external bundles, shared modules, state management, `reactlynx-use`, Habitat, DevTool diagnostics, trace workflows, and debug-info remapping,
 - migrate web/shadcn-style patterns safely,

@@ -13,7 +13,7 @@ Use this skill to create polished Lynx.js app surfaces, pages, projects, and bun
 The priorities of this skill outrank convenience:
 
 1. Create enough great-looking concept design first when the task is visual, unless the user opts out or the change is a small fix inside an existing design system.
-2. Implement faithfully from the accepted concept using Lynx/ReactLynx constraints, official Lynx docs, ReactLynx best-practice guardrails, and `lynx-ui` guidance when appropriate.
+2. Implement faithfully from the accepted concept using Lynx/ReactLynx constraints, official Lynx docs/global community-skill guidance and `lynx-ui` guidance when appropriate.
 3. Verify with the strongest evidence available. Prefer Lynx DevTool MCP screenshot/interaction/console/source evidence when configured and connected; otherwise run static/build/lint/test checks and clearly state that visual parity was not proven.
 4. Leave a reusable Lynx-native design system: tokens, component variants, state patterns, and verification commands that future agents can reproduce.
 
@@ -21,14 +21,14 @@ The priorities of this skill outrank convenience:
 
 - Lynx quick-start tooling can create Lynx projects and output Lynx/Web bundles.
 - Complete native, mobile, desktop, or web host applications require host integration. Do not imply this plugin can build a full host app from scratch without reading official host-integration resources.
-- For host/container claims, route through `lynx-official-tools` and cite `lynx-docs://react/start/quick-start.md` or `lynx-docs://react/start/integrate-with-existing-apps.md` as appropriate.
+- For host/container claims, use the globally installed official Lynx Docs MCP/community skills when available and cite `lynx-docs://react/start/quick-start.md` or `lynx-docs://react/start/integrate-with-existing-apps.md` as appropriate.
 - Record the target host explicitly: iOS, Android, HarmonyOS, Web, Windows, macOS, Lynx Explorer, a product host, or planning-only.
 - Keep Lynx bundle work, host engine initialization, native module registration, resource loading, service injection, and app-store/native release tasks as separate workstreams.
 
 ## Required routing before implementation
 
-- For Lynx framework/API/build/runtime behavior, use `lynx-official-tools` and current official docs. If `lynx-docs` MCP is configured, read `lynx-docs://llms.txt` first.
-- For ReactLynx component code, events, native modules, main-thread scripts, shared modules, routing, data fetching, or TypeScript, use `reactlynx-best-practices` before coding.
+- For Lynx framework/API/build/runtime behavior, use current official docs. If the globally installed `lynx-docs` MCP is configured, read `lynx-docs://llms.txt` first.
+- For ReactLynx component code, events, native modules, main-thread scripts, shared modules, routing, data fetching, or TypeScript, route to the globally installed upstream Lynx community skills when available; otherwise read the matching official Lynx docs before coding.
 - For component and token choices, use `lynx-ui-guidance` and read local registry/docs before recommending package APIs.
 - For payment or data-layer work, use the optional service skills only after the Lynx UI and framework boundaries are clear.
 - Do not run official MCP/community-skill setup commands unless the user starts a separate setup/configuration task.
@@ -105,7 +105,7 @@ If any inventory item is uncertain, retrieve official docs or local registry/doc
 
 1. Detect existing project conventions and Lynx/ReactLynx setup before writing code.
 2. Read current official Lynx docs for any uncertain framework/build/runtime behavior.
-3. Apply `reactlynx-best-practices` to component code, event handling, native modules, main-thread scripts, shared modules, static JSX, routing/data patterns, and TypeScript.
+3. Apply official ReactLynx guidance and any globally installed upstream Lynx community skills to component code, event handling, native modules, main-thread scripts, shared modules, static JSX, routing/data patterns, and TypeScript.
 4. Prefer `@dumbooks/lynx-ui` root imports for local-workspace internal-beta package components when registry/docs support the target surface.
 5. Keep source changes in the consuming app. Do not edit `/Users/ryneschroder/Developer/git/dumbooks/packages/lynx-ui` without a separate explicit package-edit task.
 6. Avoid browser globals, DOM-specific events, React DOM assumptions, Radix/browser-only primitives, Tailwind runtime assumptions, and uncontrolled UI-kit ports.

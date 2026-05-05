@@ -45,14 +45,11 @@ REQUIRED_SCHEMA_LABELS = [
 
 GLOBAL_COVERAGE_TERMS = [
     "lynx-app-builder",
-    "lynx-official-tools",
-    "reactlynx-best-practices",
     "lynx-ui-guidance",
-    "lynx-typescript",
-    "lynx-devtool",
-    "lynx-trace-record",
-    "lynx-trace-analysis",
-    "debug-info-remapping",
+    "official global Lynx",
+    "Lynx Docs MCP",
+    "DevTool MCP",
+    "upstream Lynx",
     "@dumbooks/lynx-ui",
     "$visual-ralph",
     "$visual-verdict",
@@ -72,6 +69,9 @@ GLOBAL_COVERAGE_TERMS = [
     "asset manifest",
     "icon/SVG plan",
     "accessibility/i18n cues",
+    "exact export surface",
+    "registry examples",
+    "external-consumer stability claim",
 ]
 
 

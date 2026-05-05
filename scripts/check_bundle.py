@@ -12,13 +12,6 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPECTED_REPOSITORY = "https://github.com/ryne2010/build-lynx-apps"
 EXPECTED_SKILLS = {
     "lynx-app-builder": "lynx-app-builder",
-    "lynx-official-tools": "lynx-official-tools",
-    "reactlynx-best-practices": "reactlynx-best-practices",
-    "lynx-typescript": "lynx-typescript",
-    "lynx-devtool": "lynx-devtool",
-    "lynx-trace-record": "lynx-trace-record",
-    "lynx-trace-analysis": "lynx-trace-analysis",
-    "debug-info-remapping": "debug-info-remapping",
     "lynx-ui-guidance": "lynx-ui-guidance",
     "stripe-best-practices": "stripe-best-practices",
     "supabase-postgres-best-practices": "supabase-postgres-best-practices",
@@ -56,67 +49,6 @@ REQUIRED_PATHS = [
     "docs/COOKBOOK.md",
     "docs/EVALS.md",
     "scripts/check_evals.py",
-    "skills/reactlynx-best-practices/SKILL.md",
-    "skills/reactlynx-best-practices/agents/openai.yaml",
-    "skills/lynx-typescript/SKILL.md",
-    "skills/lynx-typescript/agents/openai.yaml",
-    "skills/lynx-devtool/SKILL.md",
-    "skills/lynx-devtool/agents/openai.yaml",
-    "skills/lynx-trace-record/SKILL.md",
-    "skills/lynx-trace-record/agents/openai.yaml",
-    "skills/lynx-trace-analysis/SKILL.md",
-    "skills/lynx-trace-analysis/agents/openai.yaml",
-    "skills/debug-info-remapping/SKILL.md",
-    "skills/debug-info-remapping/agents/openai.yaml",
-]
-OFFICIAL_TOOL_REQUIRED_STRINGS = [
-    "lynx-docs://llms.txt",
-    "lynx-docs://versions.md",
-    "lynx-docs://react/start/quick-start.md",
-    "lynx-docs://react/start/integrate-with-existing-apps.md",
-    "lynx-docs://ai/lynx-docs-mcp.md",
-    "lynx-docs://ai/lynx-devtool-mcp.md",
-    "lynx-docs://blog/lynx-3-7.md",
-    "lynx-docs://react/reactlynx-testing-library.md",
-    "lynx-docs://react/routing/tanstack-router.md",
-    "lynx-docs://react/code-splitting.md",
-    "lynx-docs://rspeedy/external-bundle.md",
-    "lynx-docs://react/state-management/zustand.md",
-    "lynx-docs://blog/lynx-3-6.md",
-    "reactlynx-use",
-    "habitat-usage",
-    "CDP commands",
-    "App commands",
-    "Open URLs",
-    "Troubleshooting",
-    "lynx-docs://ai/skills/trace-record.md",
-    "lynx-docs://ai/skills/trace-analysis.md",
-    "lynx-docs://ai/skills/debug-info-remapping.md",
-    "local `lynx-typescript`",
-    "local `lynx-devtool`",
-    "local `lynx-trace-record`",
-    "local `lynx-trace-analysis`",
-    "local `debug-info-remapping`",
-]
-REACTLYNX_REQUIRED_STRINGS = [
-    "lynx-docs://ai/skills/reactlynx-best-practices.md",
-    "lynx-docs://react/best-practices.md",
-    "lynx-docs://react/thinking-in-reactlynx.md",
-    "lynx-docs://react/main-thread-script.md",
-    "lynx-docs://ai/skills/lynx-typescript.md",
-    "lynx-docs://react/reactlynx-testing-library.md",
-    "background only",
-    "bindtap",
-    "catchtap",
-    "main-thread:",
-    "runOnMainThread",
-    "runOnBackground",
-    "with { runtime: 'shared' }",
-    "JSON-serializable",
-    "Memory Routing",
-    "reactlynx-use",
-    "global event hooks",
-    "state-management",
 ]
 APP_BUILDER_REQUIRED_STRINGS = [
     "$visual-ralph",
@@ -133,56 +65,6 @@ APP_BUILDER_REQUIRED_STRINGS = [
     "accessibility/i18n",
 ]
 
-LYNX_TYPESCRIPT_REQUIRED_STRINGS = [
-    "lynx-docs://ai/skills/lynx-typescript.md",
-    "lynx-docs://rspeedy/typescript.md",
-    "@lynx-js/rspeedy/client",
-    "isolatedModules",
-    "NativeModules",
-    "IntrinsicElements",
-    "InitData",
-    "MainThread",
-    "import type",
-]
-LYNX_DEVTOOL_REQUIRED_STRINGS = [
-    "lynx-docs://ai/lynx-devtool-mcp.md",
-    "lynx-docs://ai/skills/lynx-devtool.md",
-    "connected device/app",
-    "console",
-    "loaded sources",
-    "screenshots",
-    "read-only",
-    "CDP commands",
-    "App commands",
-    "Open URLs",
-    "Troubleshooting",
-    "connector/transport",
-]
-LYNX_TRACE_RECORD_REQUIRED_STRINGS = [
-    "lynx-docs://ai/skills/trace-record.md",
-    "lynx-docs://guide/devtool/trace.md",
-    "trace artifact path",
-    "startup/white screen",
-    "scroll jank",
-    "JS profiling",
-]
-LYNX_TRACE_ANALYSIS_REQUIRED_STRINGS = [
-    "lynx-docs://ai/skills/trace-analysis.md",
-    "lynx-docs://guide/devtool/trace.md",
-    "rank",
-    "startup/white screen",
-    "frame drops",
-    "native module",
-    "Do not fabricate metric values",
-]
-DEBUG_INFO_REQUIRED_STRINGS = [
-    "lynx-docs://ai/skills/debug-info-remapping.md",
-    "lynx-docs://rspeedy/output.md",
-    "source maps",
-    "main-thread",
-    "generated artifact",
-    "Do not claim a source location without mapping evidence",
-]
 
 LYNX_UI_REQUIRED_FIELDS = [
     "status",
@@ -208,6 +90,16 @@ LYNX_UI_REQUIRED_FIELDS = [
     "internal-beta",
     "future open source",
     "pnpm lynx-ui list --items --json",
+    "external-consumer",
+    "exact export surface",
+    "@dumbooks/lynx-ui/tokens",
+    "@dumbooks/lynx-ui/tokens.css",
+    "@dumbooks/lynx-ui/token-registry",
+    "@dumbooks/lynx-ui/flavors",
+    "@dumbooks/lynx-ui/registry",
+    "@dumbooks/lynx-ui/registry-manifest",
+    "registry examples",
+    "examples/*.tsx",
 ]
 SERVICE_REQUIRED_STRINGS = {
     "skills/stripe-best-practices/SKILL.md": [
@@ -402,13 +294,6 @@ def validate() -> list[str]:
         errors.append(f"README roster mismatch: expected {sorted(EXPECTED_SKILLS)}, got {sorted(roster)}")
 
     require_strings(errors, "skills/lynx-app-builder/SKILL.md", APP_BUILDER_REQUIRED_STRINGS)
-    require_strings(errors, "skills/lynx-official-tools/SKILL.md", OFFICIAL_TOOL_REQUIRED_STRINGS)
-    require_strings(errors, "skills/reactlynx-best-practices/SKILL.md", REACTLYNX_REQUIRED_STRINGS)
-    require_strings(errors, "skills/lynx-typescript/SKILL.md", LYNX_TYPESCRIPT_REQUIRED_STRINGS)
-    require_strings(errors, "skills/lynx-devtool/SKILL.md", LYNX_DEVTOOL_REQUIRED_STRINGS)
-    require_strings(errors, "skills/lynx-trace-record/SKILL.md", LYNX_TRACE_RECORD_REQUIRED_STRINGS)
-    require_strings(errors, "skills/lynx-trace-analysis/SKILL.md", LYNX_TRACE_ANALYSIS_REQUIRED_STRINGS)
-    require_strings(errors, "skills/debug-info-remapping/SKILL.md", DEBUG_INFO_REQUIRED_STRINGS)
     require_strings(errors, "skills/lynx-ui-guidance/SKILL.md", LYNX_UI_REQUIRED_FIELDS)
     for rel, strings in SERVICE_REQUIRED_STRINGS.items():
         require_strings(errors, rel, strings)
@@ -443,6 +328,8 @@ def validate() -> list[str]:
             errors.append(f"docs/EVALS.md eval contract validation failed: {detail}")
 
     official_setup_text = (ROOT / "README.md").read_text(encoding="utf-8") if (ROOT / "README.md").exists() else ""
+    if "official tools globally" not in official_setup_text and "official global Lynx" not in official_setup_text:
+        errors.append("README must say official Lynx tools are installed globally, not vendored")
     if "documentation only" not in official_setup_text or "Do not run setup" not in official_setup_text:
         errors.append("README setup commands must remain clearly documentation-only")
 

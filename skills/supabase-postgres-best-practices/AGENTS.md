@@ -19,7 +19,7 @@ Comprehensive performance optimization guide for Postgres, maintained by Supabas
 
 ## Build Lynx Apps boundary
 
-When used from Build Lynx Apps, this skill owns database/backend/service-layer guidance only. Keep UI composition in `lynx-app-builder`, `reactlynx-best-practices`, and `lynx-ui-guidance`. Never put service-role keys, database passwords, privileged SQL, or admin operations in a Lynx bundle; client-safe anon-key usage requires RLS proof and host/network assumptions.
+When used from Build Lynx Apps, this skill owns database/backend/service-layer guidance only. Keep UI composition in `lynx-app-builder`, official/global ReactLynx guidance, and `lynx-ui-guidance`. Never put service-role keys, database passwords, privileged SQL, or admin operations in a Lynx bundle; client-safe anon-key usage requires RLS proof and host/network assumptions.
 
 ## When to Apply
 

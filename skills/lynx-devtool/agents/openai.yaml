@@ -1,3 +1,0 @@
-interface:
-  display_name: "Lynx DevTool"
-  short_description: "Use Lynx DevTool MCP for CDP/App/Open URL diagnostics, inspection, console/source debugging, interactions, and screenshots"

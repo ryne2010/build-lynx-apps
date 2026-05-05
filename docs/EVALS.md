@@ -8,7 +8,7 @@ Each fixture defines the expected routing, required evidence, prohibited claims/
 
 **Prompt:** Build a polished Lynx dashboard screen from scratch for a finance workflow.
 
-**Expected routing:** `lynx-app-builder` → `lynx-official-tools` → `reactlynx-best-practices` → `lynx-ui-guidance` if components are requested.
+**Expected routing:** `lynx-app-builder` → official global Lynx Docs/community skills → `lynx-ui-guidance` if components are requested.
 
 **Required evidence:** concept/state plan; host/container boundary; official quick-start or integration resource when project/host claims are made; implementation inventory; verification tier ledger.
 
@@ -20,19 +20,19 @@ Each fixture defines the expected routing, required evidence, prohibited claims/
 
 **Prompt:** Migrate this shadcn-style account settings form to `@dumbooks/lynx-ui`.
 
-**Expected routing:** `lynx-ui-guidance` plus `reactlynx-best-practices` for events/types.
+**Expected routing:** `lynx-ui-guidance` plus official/global ReactLynx guidance for events/types.
 
-**Required evidence:** local registry/docs read; local-workspace/internal-beta framing; root import vs unavailable component decision; proof/substrate fields; business-logic preservation.
+**Required evidence:** local registry/docs read; local-workspace/internal-beta framing; target workspace package-resolution check; package manifest private/license/export review; exact export surface selection; registry examples or local `examples/*.tsx` read before usage claims; root import vs unavailable component decision; proof/substrate fields; business-logic preservation.
 
-**Prohibited claims/actions:** no public npm availability claim; no DOM/Radix/Tailwind runtime copy; no guessed package APIs; no package repo edits.
+**Prohibited claims/actions:** no public npm availability claim; no external-consumer stability claim without package/release proof; no DOM/Radix/Tailwind runtime copy; no guessed package APIs; no package repo edits.
 
-**Pass criteria:** recommends package imports only when registry/export/proof/workspace gates support them and marks unavailable components as Lynx-native compositions or follow-ups.
+**Pass criteria:** recommends package imports only when registry/export/proof/workspace gates support them, names examples checked when usage is non-trivial, and marks unavailable or non-resolvable components as Lynx-native compositions or follow-ups.
 
 ## Fixture 3 — Scroll animation and native module fix
 
 **Prompt:** Fix a ReactLynx scroll animation that lags and calls a native analytics module.
 
-**Expected routing:** `reactlynx-best-practices` and `lynx-official-tools`.
+**Expected routing:** official/global ReactLynx guidance and Lynx Docs MCP.
 
 **Required evidence:** `lynx-docs://react/best-practices.md`; `lynx-docs://react/main-thread-script.md`; thread-context assessment; `background only` native call placement; `main-thread:` scroll/animation decision; `runOnBackground` if main-thread interaction needs analytics handoff.
 
@@ -44,7 +44,7 @@ Each fixture defines the expected routing, required evidence, prohibited claims/
 
 **Prompt:** Debug this connected Lynx page and compare the latest screenshot to the accepted concept.
 
-**Expected routing:** `lynx-official-tools`, `lynx-app-builder`, optional `$visual-verdict` when screenshot/reference evidence exists.
+**Expected routing:** official global Lynx Docs/DevTool MCP, `lynx-app-builder`, optional `$visual-verdict` when screenshot/reference evidence exists.
 
 **Required evidence:** Docs MCP availability, DevTool MCP availability, device/app status, DevTool operation class used (CDP commands/App commands/Open URLs/Troubleshooting/inspection/console/source/interaction/screenshot), screenshot artifact, console/source/interaction checks, visual QA ledger.
 
@@ -58,7 +58,7 @@ Each fixture defines the expected routing, required evidence, prohibited claims/
 
 **Expected routing:** `lynx-ui-guidance`.
 
-**Required evidence:** package import first; local-workspace availability; registry entry; `ownership.copyInstall`; dry-run CLI plan with `diff`; explicit write boundary.
+**Required evidence:** package import first; local-workspace availability; exact export surface; registry entry; registry examples when present; `ownership.copyInstall`; dry-run CLI plan with `diff`; explicit write boundary.
 
 **Prohibited claims/actions:** no MCP writes; no mutating copy/install without separate explicit write-mode request; no arbitrary file writes outside target.
 
@@ -104,7 +104,7 @@ Each fixture defines the expected routing, required evidence, prohibited claims/
 
 **Prompt:** Configure TypeScript for a custom native module and custom element in ReactLynx.
 
-**Expected routing:** `reactlynx-best-practices` and `lynx-official-tools`.
+**Expected routing:** official/global ReactLynx guidance and Lynx Docs MCP.
 
 **Required evidence:** `lynx-docs://ai/skills/lynx-typescript.md` and detailed TypeScript resource if available; `NativeModules` and `IntrinsicElements` extension guidance; `isolatedModules` and type-only exports.
 
@@ -118,7 +118,7 @@ Each fixture defines the expected routing, required evidence, prohibited claims/
 
 **Expected routing:** `lynx-ui-guidance`.
 
-**Required evidence:** registry/doc lookup; local-workspace framing; unavailable/proof-gated status; Lynx-native composition fallback; follow-up package gap.
+**Required evidence:** registry/doc lookup; exact export surface check; registry examples check when a nearby component exists; local-workspace framing; unavailable/proof-gated status; Lynx-native composition fallback; follow-up package gap.
 
 **Prohibited claims/actions:** no invented root export; no public package availability claim; no package repo edit; no broad stability claim.
 
@@ -140,7 +140,7 @@ Each fixture defines the expected routing, required evidence, prohibited claims/
 
 **Prompt:** Add SVG icons and desktop pointer interactions to this Lynx admin surface.
 
-**Expected routing:** `lynx-official-tools` and `reactlynx-best-practices`.
+**Expected routing:** official global Lynx Docs/community skills.
 
 **Required evidence:** `lynx-docs://versions.md` or release resource; SVG resource or documented fallback; desktop host target; mouse/keyboard/wheel/cursor compatibility caveat; verification tier.
 
@@ -152,7 +152,7 @@ Each fixture defines the expected routing, required evidence, prohibited claims/
 
 **Prompt:** Add a routed settings flow, tests, and an external component bundle for reuse across two Lynx apps.
 
-**Expected routing:** `lynx-official-tools` and `reactlynx-best-practices`; `lynx-ui-guidance` only for UI composition.
+**Expected routing:** official global Lynx Docs/community skills; `lynx-ui-guidance` only for UI composition.
 
 **Required evidence:** routing docs (`Memory Routing`, browser history limitation, `isServer: false` when relevant); ReactLynx Testing Library setup; external bundle producer/consumer split; section paths; `externalsPresets`; `engineVersion`/CSS boundary caveat.
 
@@ -165,19 +165,19 @@ Each fixture defines the expected routing, required evidence, prohibited claims/
 
 **Prompt:** Diagnose a Lynx screen with a TypeScript native-module type error, a connected DevTool console stack, and a suspected scroll jank trace.
 
-**Expected routing:** `lynx-official-tools` → `lynx-typescript` for declarations/types → `lynx-devtool` for connected console/source evidence → `lynx-trace-record` if a new trace is needed → `lynx-trace-analysis` for existing trace artifacts → `debug-info-remapping` for minified/generated source mapping.
+**Expected routing:** official global Lynx Docs/community skills for declarations/types, connected DevTool console/source evidence, trace capture/analysis, and debug-info remapping.
 
 **Required evidence:** `lynx-docs://llms.txt`; official skill resources for TypeScript, DevTool, trace record/analysis, and debug-info remapping as relevant; DevTool CDP commands/App commands/Open URLs/Troubleshooting category when connected runtime diagnosis is needed; device/app/trace/source-map availability; clear evidence tier and fallback reason when runtime evidence is unavailable.
 
 **Prohibited claims/actions:** no setup/config mutation; no fabricated trace metrics; no source-location claim without mapping evidence; no runtime/screenshot claim without DevTool artifact; no `any` fallback as the primary TypeScript plan.
 
-**Pass criteria:** uses the first-class companion skills as bounded routing surfaces, preserves official docs as source of truth, and separates static/type evidence from DevTool/trace/runtime evidence.
+**Pass criteria:** uses official global Lynx tools as bounded routing surfaces, preserves official docs as source of truth, and separates static/type evidence from DevTool/trace/runtime evidence.
 
 ## Fixture 15 — Broader Lynx ecosystem routing
 
 **Prompt:** Diagnose a Lynx monorepo that uses Habitat for dependency sync, `reactlynx-use` hooks for gesture helpers, and Zustand for a shared settings surface.
 
-**Expected routing:** `lynx-official-tools` → `reactlynx-best-practices`; upstream `habitat-usage` only as an installed/community-skill handoff when Habitat config or `hab sync` troubleshooting is in scope.
+**Expected routing:** official global Lynx Docs/community skills; upstream `habitat-usage` only as an installed/community-skill handoff when Habitat config or `hab sync` troubleshooting is in scope.
 
 **Required evidence:** official Lynx resource entrypoint; `lynx-docs://blog/lynx-3-6.md` or current `reactlynx-use` docs; `lynx-docs://react/state-management/zustand.md` or matching official state-management resource; project `package.json` dependency proof; Habitat `.habitat`/`DEPS`/wrapper/log evidence when sync is discussed.
 
@@ -189,10 +189,13 @@ Each fixture defines the expected routing, required evidence, prohibited claims/
 
 **Prompt:** Generate and implement a polished cross-host Lynx analytics surface with dense tables, charts, SVG icons, loading/empty/error states, and accessibility requirements.
 
-**Expected routing:** `lynx-app-builder` → `lynx-official-tools` → `reactlynx-best-practices` → `lynx-ui-guidance` when local package components are requested; `$visual-ralph`/`$visual-verdict` only after a reference/screenshot path exists.
+**Expected routing:** `lynx-app-builder` → official global Lynx Docs/community skills → `lynx-ui-guidance` when local package components are requested; `$visual-ralph`/`$visual-verdict` only after a reference/screenshot path exists.
 
 **Required evidence:** state atlas; asset manifest; icon/SVG plan; responsive/device variants; visible-copy lock; accessibility/i18n cues; implementation inventory; visual QA ledger with screenshot fallback if no DevTool runtime exists.
 
 **Prohibited claims/actions:** no coding from a vague cropped/header-only concept; no browser-only chart/control assumptions; no visual parity claim without inspected screenshot or verdict; no invented metrics or unsupported host capabilities.
 
 **Pass criteria:** extracts enough design tokens, state coverage, asset/icon details, Lynx element inventory, and verification tiers for a future implementation without relying on visual guessing.
+
+
+Contract note: official global Lynx Docs MCP, DevTool MCP, and upstream Lynx community skills remain external prerequisites; this plugin must not vendor them.

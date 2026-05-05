@@ -4,7 +4,7 @@ Use these workflows as implementation guidance. Commands that install MCP server
 
 ## 1. Create or inspect a Lynx project/bundle
 
-1. Use `lynx-official-tools` and read `lynx-docs://llms.txt` first when Lynx Docs MCP is available.
+1. Use the globally installed official Lynx Docs MCP and read `lynx-docs://llms.txt` first when available.
 2. Read `lynx-docs://react/start/quick-start.md` for project creation and development flow.
 3. Read `lynx-docs://rspeedy/output.md` when claiming build artifacts or bundle names.
 4. Record package manager, Rspeedy config, `engineVersion` when present, output bundle targets, and available scripts.
@@ -25,7 +25,7 @@ Use these workflows as implementation guidance. Commands that install MCP server
 1. Use `lynx-app-builder` for concept-first workflow.
 2. Generate or request enough visual concept detail for all required states.
 3. Build an implementation inventory: elements, CSS Modules, tokens, data, events, native modules, routing, test plan, bundle target, host services, and verification tier.
-4. Use `reactlynx-best-practices` for events, native API calls, main-thread scripts, cross-thread calls, shared modules, static JSX, TypeScript, routing, and tests.
+4. Use globally installed upstream Lynx community skills when available, plus official docs, for events, native API calls, main-thread scripts, cross-thread calls, shared modules, static JSX, TypeScript, routing, and tests.
 5. Use `lynx-ui-guidance` for package components and proof-gated component selection.
 6. Verify with DevTool screenshot evidence when available; otherwise report static/build evidence and state that visual parity is not proven.
 
@@ -42,15 +42,18 @@ Use these workflows as implementation guidance. Commands that install MCP server
 
 1. Read local registry/docs before recommending a component.
 2. Frame the package as local-workspace/internal-beta for now. It is poised for future open source, but do not imply public npm availability, public release approval, or external stable support.
-3. Prefer root imports from `@dumbooks/lynx-ui` when `exportChannel` and proof gates support package usage and the target workspace can resolve the local package.
-4. Check proof fields, runtime target/verified hosts, official substrate fields, dependency gate, source provenance, and AI usage hints.
-5. Check visual style/base-color and platform-item metadata through `pnpm lynx-ui theme --json`, `pnpm lynx-ui list --items --json`, registry `items`, docs, or MCP resources when available.
-6. Keep `@dumbooks/lynx-ui/experimental` as an opt-in compatibility alias, not the default.
-7. Do not edit `/Users/ryneschroder/Developer/git/dumbooks/packages/lynx-ui` from this plugin without a separate package-edit task.
+3. Check the target app can resolve the local package. If not, give a Lynx-native fallback using official Lynx elements and CSS Modules instead of suggesting public package installation.
+4. Read `packages/lynx-ui/package.json` for the exact export surface before recommending imports: root, `tokens`, `tokens.css`, `token-registry`, `flavors`, `registry`, `registry-manifest`, and the opt-in `experimental` compatibility alias.
+5. Prefer root imports from `@dumbooks/lynx-ui` when `exportChannel` and proof gates support package usage and the target workspace can resolve the local package.
+6. Check proof fields, runtime target/verified hosts, official substrate fields, dependency gate, source provenance, and AI usage hints.
+7. Read registry examples or local `examples/*.tsx` usage files before inventing prop combinations, state ownership, visual-style/base-color usage, or migration patterns.
+8. Check visual style/base-color and platform-item metadata through `pnpm lynx-ui theme --json`, `pnpm lynx-ui list --items --json`, registry `items`, docs, examples, or MCP resources when available.
+9. Keep `@dumbooks/lynx-ui/experimental` as an opt-in compatibility alias, not the default.
+10. Do not edit `/Users/ryneschroder/Developer/git/dumbooks/packages/lynx-ui` from this plugin without a separate package-edit task.
 
 ## 6. Debug with Lynx DevTool MCP
 
-1. Use `lynx-official-tools` to record Docs MCP and DevTool MCP availability.
+1. Record official Lynx Docs MCP and DevTool MCP availability.
 2. If a device/app is connected, use only the DevTool capabilities supported by the installed MCP surface and record which category was used: CDP commands, element/style inspection, App commands, Open URLs, console/stack traces, loaded sources, interactions, screenshots, or troubleshooting.
 3. Use App commands and Open URLs only for preview/navigation of the connected Lynx app; do not treat them as setup/config mutation.
 4. Use connector/transport troubleshooting when the MCP exists but no device/app/page is visible, and preserve the exact diagnostic/error output.
@@ -78,15 +81,12 @@ Use these workflows as implementation guidance. Commands that install MCP server
 4. Query `@dumbooks/lynx-ui` registry/docs for equivalent local-workspace components; if unavailable, propose a Lynx-native composition and mark the package gap as follow-up.
 5. Verify with static/build checks and runtime/visual proof when available.
 
-## 9. Use first-class official Lynx skill companions
+## 9. Use official global Lynx tools
 
-1. Start with `lynx-official-tools` and `lynx-docs://llms.txt` for framework truth.
-2. Route ReactLynx code through `reactlynx-best-practices`.
-3. Route TypeScript setup, declarations, native module typings, custom elements, and main-thread event/ref types through `lynx-typescript`.
-4. Route connected runtime inspection, console/source checks, interaction checks, and screenshots through `lynx-devtool`.
-5. Route trace capture through `lynx-trace-record`, then analyze existing trace artifacts with `lynx-trace-analysis`.
-6. Route minified/generated/main-thread runtime stack mapping through `debug-info-remapping`.
-7. These bundled companions are local routing/checklists over official Lynx docs and MCPs. They do not install community skills or replace current official documentation.
+1. Start with globally installed `lynx-docs` and `lynx-docs://llms.txt` for framework truth.
+2. Route ReactLynx code, TypeScript setup, DevTool inspection, trace capture/analysis, and debug-info remapping through upstream `lynx-community/skills` when installed.
+3. Use globally installed `lynx-devtool` MCP for connected runtime inspection, console/source checks, interaction checks, screenshots, App commands, Open URLs, troubleshooting, and trace workflows.
+4. If official global tools are unavailable, fall back to official Lynx docs URLs and static/build evidence; do not use this plugin as a local copy of those official skills.
 
 ## 10. Route broader Lynx ecosystem workflows
 

@@ -24,7 +24,7 @@ When Supabase or Postgres powers a Lynx app surface, keep database and auth boun
 - Keep schema changes, migrations, privileged writes, cron jobs, and server-side aggregation on trusted backend or database surfaces.
 - Treat network/offline behavior as host-dependent; record the target host service/network assumptions before promising sync, caching, or background behavior.
 - Place generated clients and environment loading according to the consuming app's conventions, and avoid leaking private environment variables into bundled code.
-- Route UI composition back to `lynx-app-builder`, `reactlynx-best-practices`, and `lynx-ui-guidance`; this skill owns data, policy, query, and performance guidance only.
+- Route UI composition back to `lynx-app-builder`, official/global ReactLynx guidance, and `lynx-ui-guidance`; this skill owns data, policy, query, and performance guidance only.
 - Cite current Supabase/Postgres docs for security, auth, and RLS claims.
 
 ## When to Apply

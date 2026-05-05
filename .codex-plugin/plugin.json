@@ -1,7 +1,7 @@
 {
   "name": "build-lynx-apps",
   "version": "0.1.0",
-  "description": "Build Lynx.js app surfaces, pages, bundles, and diagnostics with official Lynx tooling, first-class Lynx AI skill guidance, Lynx-native UI guidance, visual concept workflows, and optional app-service integration guidance.",
+  "description": "Build Lynx.js app surfaces and bundles with official global Lynx tooling routes, Lynx-native UI guidance, visual concept workflows, and optional app-service integration guidance.",
   "author": {
     "name": "Ryne Schroder",
     "url": "https://github.com/ryne2010"
@@ -13,32 +13,17 @@
     "build-lynx-apps",
     "lynx",
     "reactlynx",
-    "reactlynx-best-practices",
     "lynx-ui",
-    "docs-mcp",
-    "devtool-mcp",
     "image-generation",
     "visual-qa",
-    "habitat",
-    "reactlynx-use",
-    "state-management",
-    "lynx-typescript",
-    "lynx-devtool",
-    "cdp-commands",
-    "open-urls",
-    "lynx-trace-record",
-    "lynx-trace-analysis",
-    "debug-info-remapping",
-    "performance-trace",
-    "source-maps",
     "stripe",
     "supabase"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Build Lynx Apps",
-    "shortDescription": "Build Lynx app surfaces with official tooling, Lynx AI skills, Lynx-native UI, and visual QA guidance",
-    "longDescription": "Use Build Lynx Apps to create and improve Lynx.js app surfaces, pages, projects, and bundles from image-generated concepts, route framework questions through official Lynx Docs and DevTool MCPs, apply first-class companions for the official Lynx AI skill set (ReactLynx best practices, TypeScript, DevTool, trace recording, trace analysis, and debug-info remapping), cover broader Lynx ecosystem guidance such as Habitat, reactlynx-use, and state-management examples, compose UI with read-only @dumbooks/lynx-ui guidance, and optionally plan Stripe or Supabase/Postgres app-service integrations without UI-framework assumptions. Complete native, mobile, desktop, or web host applications require the host integration path documented by official Lynx resources.",
+    "shortDescription": "Build Lynx app surfaces with official global tooling routes, Lynx-native UI, and visual QA guidance",
+    "longDescription": "Use Build Lynx Apps to create and improve Lynx.js app surfaces, pages, projects, and bundles from image-generated concepts, route framework truth to globally installed official Lynx Docs and DevTool MCPs, compose UI with read-only @dumbooks/lynx-ui guidance, and optionally plan Stripe or Supabase/Postgres app-service integrations without UI-framework assumptions. This plugin does not vendor or recreate the official Lynx AI skills or MCP servers; install those globally from the official Lynx sources. Complete native, mobile, desktop, or web host applications require the host integration path documented by official Lynx resources.",
     "developerName": "Ryne Schroder",
     "category": "Coding",
     "capabilities": [
