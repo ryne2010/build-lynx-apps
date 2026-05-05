@@ -1,0 +1,3 @@
+interface:
+  display_name: "Lynx TypeScript"
+  short_description: "Configure and review TypeScript for ReactLynx projects, native modules, events, and custom elements"

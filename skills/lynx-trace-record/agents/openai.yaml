@@ -1,0 +1,3 @@
+interface:
+  display_name: "Lynx Trace Record"
+  short_description: "Plan and capture Lynx performance traces with explicit device, flow, and artifact evidence"

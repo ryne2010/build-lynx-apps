@@ -45,3 +45,8 @@ Use `on_behalf_of` to control the merchant of record, but only after reading [ho
 - [SaaS platforms and marketplaces guide](https://docs.stripe.com/connect/saas-platforms-and-marketplaces.md) — Choosing the right integration shape.
 - [Interactive platform guide](https://docs.stripe.com/connect/interactive-platform-guide.md) — Step-by-step platform builder.
 - [Design an integration](https://docs.stripe.com/connect/design-an-integration.md) — Detailed risk and responsibility decisions.
+
+
+## Lynx platform boundary
+
+A Lynx marketplace surface can show onboarding state, payout status, and platform actions, but Connect account creation, capability requests, charge creation, webhook handling, and responsibility decisions belong on trusted backend/platform services. Do not place platform secret keys or Connect privileged operations in a Lynx bundle.

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Lynx Trace Analysis"
+  short_description: "Analyze Lynx trace artifacts for startup, smoothness, interaction, render, and native-module bottlenecks"

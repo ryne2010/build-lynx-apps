@@ -3,6 +3,7 @@
 ## Table of contents
 - API hierarchy
 - Integration surfaces
+- Lynx host/client boundary
 - Payment Element guidance
 - Saving payment methods
 - Dynamic payment methods
@@ -22,11 +23,17 @@ Use the [PaymentIntents API](https://docs.stripe.com/payments/paymentintents/lif
 Prioritize Stripe-hosted or embedded Checkout where possible. Use in this order of preference:
 
 1. **Payment Links** — No-code. Best for simple products.
-2. **Checkout** ([docs](https://docs.stripe.com/payments/checkout.md)) — Stripe-hosted or embedded form. Best for most web apps.
-3. **Payment Element** ([docs](https://docs.stripe.com/payments/payment-element.md)) — Embedded UI component for advanced customization.
+2. **Checkout** ([docs](https://docs.stripe.com/payments/checkout.md)) — Stripe-hosted or embedded form. Best for hosted checkout or web-container payment surfaces.
+3. **Payment Element** ([docs](https://docs.stripe.com/payments/payment-element.md)) — Embedded UI component for advanced customization on supported web payment surfaces.
    - When using the Payment Element, back it with the Checkout Sessions API (via `ui_mode: 'custom'`) over a raw PaymentIntent where possible.
 
+For Lynx native/mobile/desktop hosts, treat Checkout or Payment Element as a handoff to a Stripe-supported hosted, embedded web, or native payment surface documented for that host. Do not model the Payment Element as a Lynx element or `@dumbooks/lynx-ui` component.
+
 **Traps to avoid:** Do not recommend the legacy Card Element or the Payment Element in card-only mode. If the user asks for the Card Element, advise them to [migrate to the Payment Element](https://docs.stripe.com/payments/payment-element/migration.md).
+
+## Lynx host/client boundary
+
+A Lynx bundle may display order state, plan details, payment status, and allowed user intent, but privileged payment creation belongs on a trusted backend. Do not place Stripe secret keys, webhook secrets, restricted keys, PaymentIntent/Checkout creation logic, or ephemeral-key minting in a Lynx bundle. Record whether the target payment surface is native, web host, embedded web surface, or backend-only before recommending Checkout, Payment Element, native handoff, or webhook architecture.
 
 ## Payment Element guidance
 

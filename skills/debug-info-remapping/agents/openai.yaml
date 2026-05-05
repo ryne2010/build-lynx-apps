@@ -1,0 +1,3 @@
+interface:
+  display_name: "Lynx Debug Info Remapping"
+  short_description: "Remap minified main-thread/runtime errors to original source using DevTool sources and source maps"

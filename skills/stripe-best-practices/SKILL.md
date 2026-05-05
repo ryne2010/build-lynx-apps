@@ -9,6 +9,19 @@ Before implementing Stripe code, check official Stripe documentation for the cur
 
 Use this skill for payment architecture and backend/service integration decisions. Do not treat Stripe-hosted or embedded payment surfaces as `@dumbooks/lynx-ui` components. Route Lynx app UI composition back to `lynx-app-builder` and `lynx-ui-guidance`.
 
+
+## Lynx host/client safety
+
+When Stripe is used by a Lynx app surface, keep payment architecture separate from Lynx UI composition:
+
+- Do not put Stripe secret keys, webhook secrets, restricted keys, ephemeral key minting secrets, or PaymentIntent/Checkout privileged creation logic in a Lynx bundle.
+- Create Checkout Sessions, PaymentIntents, SetupIntents, subscriptions, Connect accounts, and webhook handlers on a trusted backend.
+- Treat Lynx surfaces as clients that display state, collect allowed user intent, and hand off to hosted/native/web payment surfaces documented by Stripe and the target host.
+- Verify current Stripe docs and SDK/API versions before writing code; payment rules are temporally sensitive.
+- Record the target host surface (native app, web host, embedded web surface, or backend-only flow) before recommending Checkout, Payment Element, native handoff, or webhook architecture.
+- Do not treat Stripe-hosted or embedded payment UI as `@dumbooks/lynx-ui` components. Compose only the surrounding Lynx-native product UI.
+- For PCI/security claims, cite official Stripe docs and clearly separate planning guidance from launch/legal/compliance approval.
+
 ## Integration routing
 
 | Building... | Recommended API | Details |

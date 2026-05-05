@@ -3,6 +3,7 @@
 ## Table of contents
 - When to use Billing APIs
 - Recommended frontend pairing
+- Lynx host/client boundary
 - Traps to avoid
 
 ## When to use Billing APIs
@@ -13,9 +14,9 @@ Review the [Subscription Use Cases](https://docs.stripe.com/billing/subscription
 
 ## Recommended frontend pairing
 
-Combine Billing APIs with Stripe Checkout for the payment frontend. Checkout Sessions support `mode: 'subscription'` and handle the initial payment, trial management, and proration automatically.
+Combine Billing APIs with Stripe Checkout for the payment frontend when the target host can hand off to a Stripe-supported hosted or embedded payment surface. Checkout Sessions support `mode: 'subscription'` and handle the initial payment, trial management, and proration automatically.
 
-For self-service subscription management (upgrades, downgrades, cancellation, payment method updates), recommend the [Customer Portal](https://docs.stripe.com/customer-management/integrate-customer-portal.md).
+For Lynx apps, compose only surrounding subscription state and product UI in Lynx; trusted backend/webhook code owns subscription creation, entitlement updates, and privileged Billing API calls. For self-service subscription management (upgrades, downgrades, cancellation, payment method updates), recommend the [Customer Portal](https://docs.stripe.com/customer-management/integrate-customer-portal.md).
 
 ## Traps to avoid
 
